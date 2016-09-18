@@ -1,9 +1,12 @@
 package cn.zane.Servlet;
 
+import cn.zane.Bean.FunctionOpen;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -11,11 +14,19 @@ import java.io.IOException;
  */
 public class FunctionBeginServlet extends HttpServlet {
     public  void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       String[] checkboxes = request.getParameterValues("checkbox");
-        for (int i=0;i<checkboxes.length;i++)
-        {
-            System.out.println(checkboxes[i]);
-        }
+
+        FunctionOpen functionOpen = new FunctionOpen();
+        functionOpen.setPlanet(request.getParameter("planet"));
+        functionOpen.setViewchoose(request.getParameter("viewchoose"));
+        functionOpen.setAutoround(request.getParameter("autoround"));
+        functionOpen.setDoplace(request.getParameter("doplace"));
+        functionOpen.setShowtellone(request.getParameter("showtellone"));
+        functionOpen.setPhone(request.getParameter("phone"));
+        functionOpen.setVrglass(request.getParameter("vrglass"));
+        functionOpen.setAutorname(request.getParameter("autorname"));
+        System.out.println(functionOpen);
+       HttpSession session= request.getSession();
+        session.setAttribute("functionOpen",functionOpen);
 
     }
 

@@ -24,17 +24,9 @@ public class EditPageServlet extends javax.servlet.http.HttpServlet {
         System.out.println(testsession);
         System.out.println(testvoiceSession);
 
-        String cameraPattern;//相机型号
-        String cameraShot ;//镜头型号
-        String yunTaiType;//云台型号
-        String ligthRing;//光圈大小
 
-        Camera camera = new Camera();
-        camera.setCameraPattern(request.getParameter("cameraPattern"));
-        camera.setCameraShot(request.getParameter("cameraShot"));
-        camera.setYunTaiType(request.getParameter("yunTaiType"));
-        camera.setLigthRing(request.getParameter("ligthRing"));
-        System.out.println(camera);
+
+
 
     }
 

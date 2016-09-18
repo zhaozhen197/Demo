@@ -74,7 +74,7 @@
                                         <label class="control-label leipiplugins-orgname">${checkbox}</label>
                                         <div class="controls leipiplugins-orgvalue">
                                             <label>
-                                                <input type="checkbox" name="checkbox"  class="edit_checkbox" orginline="inline" /> 启用
+                                                <input type="checkbox" name="checkbox" class="edit_checkbox" value="0" orginline="inline" /> 启用
                                             </label>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                         <label class="control-label leipiplugins-orgname">${checkbox}</label>
                                         <div class="controls leipiplugins-orgvalue">
                                             <label>
-                                                <input type="checkbox" name="checkbox"   class="edit_checkbox" orginline="inline"> 启用
+                                                <input type="checkbox" name="checkbox"   value="0" class="edit_checkbox" orginline="inline"> 启用
                                             </label>
                                         </div>
                                     </div>
@@ -121,16 +121,54 @@
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript">
+    $(".edit_checkbox").click(
+
+            function () {
+                if ($(this).val() == '0' )
+                {
+                    $(this).val('1');
+                }else {
+                    $(this).val('0');
+                }
+            }
+    )
+
     function fun_btn() {
-        alert("k");
-        alert($("#10").val("101010"));
+        var checkboxstr ="";
         $(".edit_checkbox").each(function () {
-            alert(this.value());
+            checkboxstr += $(this).val()+":";
+        })
+        var str = checkboxstr.split(":");
+        var checkJson="{";
+        var checkname = new Array(
+            "planet","viewchoose","autoround","doplace","showtellone","phone","vrglass","autorname"
+    );
+        for(var i= 0;i< str.length;i++)
+        {
+            if(i<str.length-1)
+            {
+                checkJson =checkJson+"\"" + checkname[i] +"\""+":"+"\""+str[i]+"\""+",";
+            }
+            else {
+                checkJson =checkJson+"\"" + checkname[i] +"\""+":"+"\""+str[i]+"\""+"}";
+            }
+        }
+        checkJson = eval('('+checkJson+')');
+        alert(checkJson);
+
+        $.ajax({
+            url:"function",
+            type:"post",
+            data:checkJson,
+            success:function () {
+
+            },
+            error:function () {
+                
+            }
         })
     }
-    $("#fun_submit_btn").click(function () {
 
-    })
 
 
     function testSession(name) {
