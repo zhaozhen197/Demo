@@ -1,0 +1,73 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>function</servlet-name>
+        <servlet-class>cn.zane.Servlet.FunctionBeginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>function</servlet-name>
+        <url-pattern>/function</url-pattern>
+    </servlet-mapping>
+  <servlet>
+    <servlet-name>EditPageServlet</servlet-name>
+    <servlet-class>cn.zane.Servlet.EditPageServlet</servlet-class>
+  </servlet>
+    <servlet>
+        <servlet-name>SmallpicServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.SmallpicServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSmallPicListServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.GetSmallPicListServlet</servlet-class>
+    </servlet>
+   
+    <servlet-mapping>
+        <servlet-name>GetSmallPicListServlet</servlet-name>
+        <url-pattern>/smallpicList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SmallpicServlet</servlet-name>
+        <url-pattern>/smallpic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>EditPageServlet</servlet-name>
+    <url-pattern>/CameraServlet</url-pattern>
+  </servlet-mapping>
+<servlet>
+    <servlet-name>smllpic</servlet-name>
+    <servlet-class>cn.zane.Servlet.SmallpicServlet</servlet-class>
+</servlet>
+    <servlet>
+        <servlet-name>VoiceServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.VoiceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VoiceTestServlet</servlet-name>
+        <servlet-class>cn.zane.TestServlet.VoiceTestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BackGroundSoundServlet</servlet-name>
+        <servlet-class>cn.zane.TestServlet.BackGroundSoundServletTest</servlet-class>
+        
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BackGroundSoundServlet</servlet-name>
+        <url-pattern>/background</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VoiceTestServlet</servlet-name>
+        <url-pattern>/voicetest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VoiceServlet</servlet-name>
+        <url-pattern>/voice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>smllpic</servlet-name>
+        <url-pattern>/smll</url-pattern>
+    </servlet-mapping>
+    </web-app>
