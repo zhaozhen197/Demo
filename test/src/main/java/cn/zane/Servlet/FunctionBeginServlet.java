@@ -1,7 +1,6 @@
 package cn.zane.Servlet;
 
 import cn.zane.Bean.FunctionOpen;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +26,10 @@ public class FunctionBeginServlet extends HttpServlet {
         System.out.println(functionOpen);
        HttpSession session= request.getSession();
         session.setAttribute("functionOpen",functionOpen);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
-
     }
     public void destroy()
     {

@@ -116,11 +116,30 @@
 
 <button class="btn btn-primary btn-lg" data-toggle="modal"
         data-target="#Functionenable" href="mymusic.html"data-backdrop="static">功能</button>
+<button class="btn bg-primary" id="save_btn" >保存设置</button>
 
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript">
+    
+    $(".save_btn").click(
+            function () {
+                $.ajax({
+                    url:"saveall",
+                    type:"post",
+                    success:function () {
+                        alert("保存成功！");
+
+                    },
+                    error:function () {
+                        alert("error");
+                    }
+
+                })
+                
+            }
+    )
     $(".edit_checkbox").click(
 
             function () {

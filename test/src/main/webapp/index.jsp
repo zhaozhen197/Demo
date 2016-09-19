@@ -62,9 +62,6 @@
                 <legend class="leipiplugins-orgvalue">功能启用</legend>
               </div>
 
-
-              <form action="function" method="post">
-
               <table class= "table" table-striped >
                 <tbody>
                 <tr>
@@ -75,7 +72,7 @@
                         <label class="control-label leipiplugins-orgname">${checkbox}</label>
                         <div class="controls leipiplugins-orgvalue">
                           <label>
-                            <input type="checkbox" name="checkbox"  class="edit_checkbox" orginline="inline" /> 启用
+                            <input type="checkbox" name="checkbox"  class="edit_checkbox" value="0" orginline="inline" /> 启用
                           </label>
                         </div>
                       </div>
@@ -90,7 +87,7 @@
                         <label class="control-label leipiplugins-orgname">${checkbox}</label>
                         <div class="controls leipiplugins-orgvalue">
                             <label>
-                            <input type="checkbox" name="checkbox"   class="edit_checkbox" orginline="inline"> 启用
+                            <input type="checkbox" name="checkbox"  value="0" class="edit_checkbox" orginline="inline"> 启用
                               </label>
                         </div>
                       </div>
@@ -103,9 +100,9 @@
               </table>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                  <input  type="submit" class="btn btn-primary" value="提交"/>
+                  <input  type="submit" class="btn btn-primary" onclick="fun_btn()" value="提交"/>
                 </div>
-          </form>
+
 
         </div>
 
@@ -185,7 +182,6 @@
     </div>
   </div>
 
-  <form method="post" action="CameraServlet">
   <!-- 相机拍摄数据 -->
   <div class="modal fade" id="myphoto" tabindex="-1">
 
@@ -202,34 +198,33 @@
         <div class="modal-body">
           <div class="input-group">
             <span class="input-group-addon">相机型号：</span>
-            <input name="cameraPattern" type="text" class="form-control" placeholder=" ">
+            <input name="cameraPattern" type="text" class="form-control" >
           </div>
 
           <div class="input-group">
             <span class="input-group-addon">镜头型号：</span>
-            <input name="cameraShot" type="text" class="form-control" placeholder=" ">
+            <input name="cameraShot" type="text" class="form-control"/>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon">云台型号：</span>
-            <input name="yunTaiType" type="text" class="form-control" placeholder=" ">
+            <input name="yunTaiType" type="text" class="form-control"/>
           </div>
 
 
           <div class="input-group">
             <span class="input-group-addon">光圈大小：</span>
-            <input name="ligthRing" type="text" class="form-control" placeholder=" ">
+            <input name="ligthRing" type="text" class="form-control"/>
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-          <button type="submit" class="btn btn-primary">保存</button>
+          <button type="button" id="camera_save_btn" class="btn btn-primary" onclick="">保存</button>
         </div>
       </div>
     </div>
   </div>
-  </form>
   <!-- 相机拍摄数据 -->
 
   <!-- 语音解说 -->
@@ -256,7 +251,6 @@
         </thead>
           <tbody id="voiceitems">
 
-
           </tbody>
         </table>
         <div class="modal-footer">
@@ -281,7 +275,7 @@
       <div class="modal-content">
 
         <div class="modal-header">
-          <button class="close" data-dismiss="modal"><span>&times;</span></button>
+          <button class="close" data-dismiss="modal"><span>&times</span></button>
           <h4 class="modal-title">天空/地面遮盖</h4>
         </div>
         <div class="modal-body">
@@ -366,30 +360,95 @@
 
   <!-- 开场提示 -->
 
-  <button class="btn btn-primary btn-lg" data-toggle="modal"
+  <button class="btn btn-primary " data-toggle="modal"
           data-target="#mymusic" href="mymusic.html"data-backdrop="static">背景音乐</button>
 
-  <button class="btn btn-primary btn-lg" data-toggle="modal"
+  <button class="btn btn-primary " data-toggle="modal"
           data-target="#myphoto" data-backdrop="static">相机拍摄数据</button>
-          <button type="submit" class="btn btn-primary btn-lg" data-toggle="modal"
+          <button type="submit" class="btn btn-primary" data-toggle="modal"
           data-target="#Voiceinterpretation" data-backdrop="static" onclick="voiceOnclick()">语音解说</button>
 
-  <button class="btn btn-primary btn-lg" data-toggle="modal"
+  <button class="btn btn-primary " data-toggle="modal"
           data-target="#Skygroundcover" data-backdrop="static">天空/地面遮盖</button>
 
-  <button class="btn btn-primary btn-lg" data-toggle="modal"
+  <button class="btn btn-primary" data-toggle="modal"
           data-target="#Openingtips" data-backdrop="static">开场提示</button>
 
-  <button class="btn btn-primary btn-lg" data-toggle="modal"
+  <button class="btn btn-primary" data-toggle="modal"
           data-target="#Functionenable" data-backdrop="static">功能启用</button>
+<button class="btn bg-primary" id="save_btn" onclick="saveall_btn()" >保存设置</button>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+//    页面保存按钮
+function saveall_btn() {
+
+  $.ajax({
+    url: "saveall",
+    type: "post",
+    success: function () {
+      alert("保存成功！");
+
+    },
+    error: function () {
+      alert("error");
+    }
+
+  })
+
+}
+    $(".edit_checkbox").click(
+
+            function () {
+              if ($(this).val() == '0' )
+              {
+                $(this).val('1');
+              }else {
+                $(this).val('0');
+              }
+            }
+    )
+
+    function fun_btn() {
+      var checkboxstr ="";
+      $(".edit_checkbox").each(function () {
+        checkboxstr += $(this).val()+":";
+      })
+      var str = checkboxstr.split(":");
+      var checkJson="{";
+      var checkname = new Array(
+              "planet","viewchoose","autoround","doplace","showtellone","phone","vrglass","autorname"
+      );
+      for(var i= 0;i< str.length;i++)
+      {
+        if(i<str.length-1)
+        {
+          checkJson =checkJson+"\"" + checkname[i] +"\""+":"+"\""+str[i]+"\""+",";
+        }
+        else {
+          checkJson =checkJson+"\"" + checkname[i] +"\""+":"+"\""+str[i]+"\""+"}";
+        }
+      }
+      checkJson = eval('('+checkJson+')');
+      alert(checkJson);
+
+      $.ajax({
+        url:"function",
+        type:"post",
+        data:checkJson,
+        success:function () {
+
+        },
+        error:function () {
+
+        }
+      })
+    }
     function testAddVoiceSession() {
       $.ajax({
         type:"post",
-        url:"CameraServlet",
+        url:"voicesave",
         datatype:"json",
         data:{
          voicename:"voice1.mp3",

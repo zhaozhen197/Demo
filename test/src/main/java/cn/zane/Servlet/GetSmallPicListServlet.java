@@ -33,8 +33,6 @@ public class GetSmallPicListServlet extends HttpServlet {
 //            Smallpic.getSmallPic(oldfiles[i].getPath(),"e:/smallpic/"+oldfiles[i].getName());
         }
         //判断新文件夹是否为空
-//        String newFilePath ="e:/smallpic/";
-        String newFilePath ="localhost:8080/smallpic";
         String realPath=getServletContext().getRealPath("/");
         System.out.println(realPath);
         File[] newfiles = GetFileList.getFile(realPath+"/smallpic");

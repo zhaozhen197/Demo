@@ -54,6 +54,22 @@
         <servlet-class>cn.zane.TestServlet.BackGroundSoundServletTest</servlet-class>
         
     </servlet>
+    <servlet>
+        <servlet-name>SaveAllServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.SaveAllServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VoiceSaveServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.VoiceSaveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoiceSaveServlet</servlet-name>
+        <url-pattern>/voicesave</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveAllServlet</servlet-name>
+        <url-pattern>/saveall</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BackGroundSoundServlet</servlet-name>
         <url-pattern>/background</url-pattern>
