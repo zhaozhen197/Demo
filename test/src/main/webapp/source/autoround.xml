@@ -1,0 +1,20 @@
+<krpano>
+<!--×Ô¶¯Ðý×ª-->
+<autorotate enabled="true"
+waittime="2.0"
+speed="-10.0"
+horizon="0.0"
+/>
+ 
+<events name="onautorotateevents" keep="true" onautorotateoneround="nextscene()"/>
+ 
+<action name="nextscene">
+	autorotate.stop();wait(1);
+	set(ns, get(scene[get(xml.scene)].index));
+	set(maxs, get(scene.count));
+	add(ns,1);
+	if(ns == maxs, set(ns,0));
+	loadscene(get(scene[get(ns)].name), null, MERGE, BLEND(1.5));
+	autorotate.start();
+</action>
+</krpano>

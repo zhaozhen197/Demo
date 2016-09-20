@@ -154,7 +154,7 @@
                 <td>${music.name}</td>
                 <td>
                   <div>
-                    <audio src="./img/${music.name}.mp3" class="music" controls="controls" preload id="${music.id}" hidden >
+                    <audio src="./music/${music.name}.mp3" class="music" controls="controls" preload id="${music.id}" hidden >
 
                     </audio>
 

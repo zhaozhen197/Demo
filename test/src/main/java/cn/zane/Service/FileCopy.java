@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /*
- * 编写程序，将指定目录下所有.java文件拷贝到另一个目的中，并将扩展名改为.txt
+ * 编写程序，copy file
  */
 public class FileCopy {
     public static void copyFunc(String srcPath , String tarPath ,String name){
@@ -47,12 +47,21 @@ public class FileCopy {
         }
     }
 
+    /**
+     * copy directory
+     * @param srcPath
+     * @param destPath
+     * @return
+     */
     public static  boolean copyDirectory(String srcPath , String destPath){
         boolean flag = false;
 
         File src = new File(srcPath);
 
         File dest = new File(destPath);
+        if (!dest.exists()){
+            dest.mkdir();
+        }
         try {
             FileUtils.copyDirectory(src, dest);
             flag = true;

@@ -4,6 +4,7 @@ import cn.zane.Bean.FunctionOpen;
 import cn.zane.Bean.Music;
 import cn.zane.Bean.Set;
 import cn.zane.Bean.Voice;
+import cn.zane.Service.GenerateVR;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,24 +20,28 @@ public class SaveAllServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+        String realPath=getServletContext().getRealPath("/");
 
         Music music;
-        Voice voice;
+//        Voice voice;
         FunctionOpen functionOpen ;
 
         music = (Music) session.getAttribute("music");
-        voice = (Voice) session.getAttribute("voice");
+//        voice = (Voice) session.getAttribute("voice");
         functionOpen = (FunctionOpen) session.getAttribute("functionOpen");
 
 
         Set set = new Set();
         set.setMusic(music);
         set.setFunctionOpen(functionOpen);
-        set.setVoice(voice);
+//        set.setVoice(voice);
 
-        System.out.println(music);
+        System.out.println("generate music");
+        new GenerateVR().generateVR(set,realPath);
+
+        /*System.out.println(music);
         System.out.println(voice);
-        System.out.println(functionOpen);
+        System.out.println(functionOpen);*/
 
     }
 
