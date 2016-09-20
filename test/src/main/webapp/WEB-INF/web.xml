@@ -16,10 +16,7 @@
     <servlet-name>EditPageServlet</servlet-name>
     <servlet-class>cn.zane.Servlet.EditPageServlet</servlet-class>
   </servlet>
-    <servlet>
-        <servlet-name>SmallpicServlet</servlet-name>
-        <servlet-class>cn.zane.Servlet.SmallpicServlet</servlet-class>
-    </servlet>
+
     <servlet>
         <servlet-name>GetSmallPicListServlet</servlet-name>
         <servlet-class>cn.zane.Servlet.GetSmallPicListServlet</servlet-class>
@@ -30,17 +27,10 @@
         <url-pattern>/smallpicList</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SmallpicServlet</servlet-name>
-        <url-pattern>/smallpic</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
     <servlet-name>EditPageServlet</servlet-name>
     <url-pattern>/CameraServlet</url-pattern>
   </servlet-mapping>
-<servlet>
-    <servlet-name>smllpic</servlet-name>
-    <servlet-class>cn.zane.Servlet.SmallpicServlet</servlet-class>
-</servlet>
+
     <servlet>
         <servlet-name>VoiceServlet</servlet-name>
         <servlet-class>cn.zane.Servlet.VoiceServlet</servlet-class>
@@ -62,6 +52,22 @@
         <servlet-name>VoiceSaveServlet</servlet-name>
         <servlet-class>cn.zane.Servlet.VoiceSaveServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OpenViewServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.OpenViewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PicContainerServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.PicContainerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PicContainerServlet</servlet-name>
+        <url-pattern>/piccontainer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpenViewServlet</servlet-name>
+        <url-pattern>/openview</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VoiceSaveServlet</servlet-name>
         <url-pattern>/voicesave</url-pattern>
@@ -82,8 +88,5 @@
         <servlet-name>VoiceServlet</servlet-name>
         <url-pattern>/voice</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>smllpic</servlet-name>
-        <url-pattern>/smll</url-pattern>
-    </servlet-mapping>
+
     </web-app>

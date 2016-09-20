@@ -1,334 +1,224 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ZZ
+  Date: 2016/9/20
+  Time: 19:17
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="zh-cn">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <title>音乐背景</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-    </style>
+    <head>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+        <title>开场提示</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+        </style>
+    </head>
 </head>
-<body >
-
-        <h4>全景设置：</h4> 
-    <!-- 模态框声明 -->
-    <div class="modal fade" id="mymusic" tabindex="-1">
-     
-            
-        <!-- 窗口声明 -->
-        <div class="modal-dialog">
-            <!-- 内容声明 -->
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title">背景音乐</h4>
-                </div>
-
-                <div class="modal-body">
-                     <h4>系统音乐：</h4>
-                       <table class= "table" table-striped  >
-                            <thead>
-                                <tr>
-                                    <th>编号</th>
-                                    <th>歌曲名</th>
-                                    <th>试听</th>
-                                    <th>设为背景音乐</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>
-                                        <div id="1">
-                                            <audio src="./img/1.mp3" controls="controls" preload id="one" hidden>
-                                            </audio>
-                                            <button id="a" class="btn btn-primary btn-lg"  onclick="a();">试听/暂停</button>
-                                        </div>
-                                     </td> 
-
-                                  
-                                    <td>
-                                    <a href="#" class="btn btn-primary"> 设为背景音乐</a>
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>
-
-                                        <div id="2">
-                                           <audio src="./img/2.mp3" controls="controls" preload id="two
-                                           " hidden>
-                                            </audio>
-                                            <button id="b" class="btn btn-primary btn-lg"  onclick="b();">试听/暂停</button>
-                                        </div>
+<body>
+<div class="modal fade" id="Openingtips" tabindex="-1">
+    <!-- 窗口声明 -->
+    <div class="modal-dialog">
+        <!-- 内容声明 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">启动画面</h4>
+            </div>
+            <div class="modal-body">
 
 
+                <table class= "table" table-striped  >
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="control-group">
+                                <!-- Multiple Checkboxes -->
+                                <label class="radio inline">
+                                    <input type="radio" name="use_or_not" class="radio" value="off">不使用提
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control-group">
+                                <!-- Multiple Checkboxes -->
+                                <label class="radio inline">
+                                    <input type="radio" name="use_or_not"  value="on" class="radio" >使用默认提示
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-primary" >从媒体库中选择</a>
+                        </td>
+                        <td>
+                            <img src="./img/logo.png" alt="" height="30"width="30" >
+                        </td>
 
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>文字：</label>
+                        </td>
+                        <td>
+                            <input type="text" class="text-left" id="open_view_text">
+                        </td>
+                    </tr>
 
-                                    </td>
-                                    <td> <a href="#" class="btn btn-primary"> 设为背景音乐</a></td>
-                                </tr>
+                    </tbody>
+                </table>
 
-                                <tr>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td><div id="3">
-                                             <audio src="./img/3.mp3" controls="controls" preload id="three" hidden>
-                                            </audio>
-                                            <button id="c" class="btn btn-primary btn-lg"  onclick="c();">试听/暂停</button>
-                                            </div>
-                                     </td>
-                                    <td> <a href="#" class="btn btn-primary"> 设为背景音乐</a></td>
-                                </tr>
-
-                                <tr>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td> <audio src="./img/4.mp3" controls="controls" preload id="four" hidden>
-                                            </audio>
-                                            <button id="d" class="btn btn-primary btn-lg"  onclick="d();">试听/暂停</button></td>
-                                    <td> <a href="#" class="btn btn-primary"> 设为背景音乐</a></td>
-                                </tr>
-
-
-
-                            </tbody>
-
-
-
-
-
-
-
-                       </table>
-
-                        <h4>
-                            自定义上传音乐：
-                        </h4>
-                   </div>                      
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                </div>
-
-
-                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
+                <button type="button" class="btn btn-primary" onclick="raidoOnclick()">保存</button>
             </div>
         </div>
     </div>
-                
-    <!-- 相机拍摄数据 -->
-    <div class="modal fade" id="myphoto" tabindex="-1">
-
-        <!-- 窗口声明 -->
-        <div class="modal-dialog">
-            <!-- 内容声明 -->
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title">相机拍摄数据</h4>
-                </div>
-
-                    <div class="modal-body">
-                              <div class="input-group">
-                          <span class="input-group-addon">相机型号：</span>
-                          <input type="text" class="form-control" placeholder=" ">
-                        </div>
-
-                        <div class="input-group">
-                          <span class="input-group-addon">镜头型号：</span>
-                          <input type="text" class="form-control" placeholder=" ">
-                        </div>
-
-                        <div class="input-group">
-                          <span class="input-group-addon">云台型号：</span>
-                          <input type="text" class="form-control" placeholder=" ">
-                        </div>
+</div>
 
 
-                        <div class="input-group">
-                          <span class="input-group-addon">光圈大小：</span>
-                          <input type="text" class="form-control" placeholder=" ">
-                        </div>
-                    </div>
-       
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary">保存</button>
-                    </div>
-            </div>
+<button class="btn btn-primary btn-lg" data-toggle="modal"
+        data-target="#Openingtips" data-backdrop="static">启动画面</button>
+
+
+<div class="section">
+    <div class="container">
+
+        <div class="suolue" class="row" >
+
+            <table class= "table" table-striped >
+
+                <thead>
+                <tr>
+                    <th>
+                        <p>
+                            全景管理 共有X个作品
+
+                        </p>
+                    </th>
+                    <th><p></p></th>
+                    <th><p></p> </th>
+                    <th>
+                        <a href="#" ><p>从素材库中添加</p></a>
+
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+
+            </table>
+
         </div>
     </div>
-
-
- <!-- 相机拍摄数据 -->
-
-<!-- 语音解说 -->
-    <div class="modal fade" id="Voiceinterpretation" tabindex="-1">
-
-        <!-- 窗口声明 -->
-        <div class="modal-dialog">
-            <!-- 内容声明 -->
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title">语音解说</h4>
-                </div>
-                <div id="voiceitems" >
-
-
-                </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="voiceCloseBtnOnclick()">关闭</button>
-                        <button type="button" class="btn btn-primary">保存</button>
-                    </div>
-            </div>
-        </div>
-    </div>
-
-
- <!-- 语音解说 -->
+</div>
 
 
 
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#tbody").append("']]]]]");
 
-
- <!-- 天空/地面遮盖 -->
-
-<!-- 开场提示-->
-    <div class="modal fade" id="Openingtips" tabindex="-1">
-
-        <!-- 窗口声明 -->
-        <div class="modal-dialog">
-            <!-- 内容声明 -->
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title">开场提示</h4>
-                </div>
-
-                    <div class="modal-body">
-                                  
-
-                    </div>
-       
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary">保存</button>
-                    </div>
-            </div>
-        </div>
-    </div>
-
-
- <!-- 开场提示 -->
-
-
-<button class="btn btn-primary btn-lg" data-toggle="modal" 
-         data-target="#mymusic" href="mymusic.html"data-backdrop="static">背景音乐</button>
-
-<button class="btn btn-primary btn-lg" data-toggle="modal" 
-         data-target="#myphoto" data-backdrop="static">相机拍摄数据</button>
-
-
- <button id="voicebtn" onclick="voiceOnclick()" class="btn btn-primary btn-lg" data-toggle="modal"
-         data-target="#Voiceinterpretation" data-backdrop="static">语音解说</button>
-
- <button class="btn btn-primary btn-lg" data-toggle="modal" 
-         data-target="#Skygroundcover" data-backdrop="static">天空/地面遮盖</button>
-
- <button class="btn btn-primary btn-lg" data-toggle="modal" 
-         data-target="#Openingtips" data-backdrop="static">开场提示</button>
-
- <button class="btn btn-primary btn-lg" data-toggle="modal" 
-         data-target="#Functionenable" data-backdrop="static">功能启用</button>
-
-
-
-
-
-
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script>
-    function voiceCloseBtnOnclick(){
-        $("#voiceitems").empty()
-    }
-    function voiceOnclick() {
-        alert("ok");
-        $("#voiceitems").append("<p>testkakaka</p>");
         $.ajax({
             type: "post",
-            url:"voice",
-            dataType:"json",
-            success:function (data) {
-                alert("success")
-                for (var i = 0; i < data.name.length; i++) {
-                    $("#voiceitems").append("<p>"+data.name[i]+"</p>");
-                };
+            url: "piccontainer",
+            dataType: "json",
+            success: function (data) {
+                alert("ok");
+                alert(data.name.length)
+                var temp = data.name.length / 4;
+                var temp1 = data.name.length % 4;
+                if (temp1 != 0 && temp !=0 ) {
+
+                    for (var i = 0; i < temp; i++) {
+                        $("#tbody").append("<tr class='container_pic_tr'>");
+                        $(".container_pic_tr").eq(i).append(
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 0] + "'>" +
+                                "<label>" + data.name[i * 4 + 0] + " </label></td>" +
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 1] + "'>" +
+                                "<label>" + data.name[i * 4 + 1] + " </label></td>" +
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
+                                "<label>" + data.name[i * 4 + 2] + " </label></td>" +
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 3] + "'>" +
+                                "<label>" + data.name[i * 4 + 3] + " </label></td></th>"
+                        )
+                        $("#tbody :last-child").after("<tr></tr>");
+                        for (var j = 4 * temp; j < data.name.length; j++) {
+                            $("#tbody :last-child").append("<td><img src='images/smallpic/" + data.name[j] + "'>" +
+                                    "<label>" + data.name[j] + " </label></td>");
+
+                        }
+                    }
+
+                } else if(temp == 0) {
+                    $("#tbody").append("<tr class='container_pic_tr'>");
+                    for(var i = 0;i<data.name.length;i++){
+                        $(".container_pic_tr").append(
+                                "<td><img src='images/smallpic/" + data.name[i] + "'>" +
+                                "<label>" + data.name[i] + " </label></td>")
+                    }
+                    $(".container_pic_tr:last-child").after("</tr>")
+                }
+                else {
+                    for (var i = 0; i < temp; i++) {
+                        $("#tbody").append("<tr class='container_pic_tr'>");
+                        $(".container_pic_tr").eq(i).append(
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 0] + "'>" +
+                                "<label>" + data.name[i * 4 + 0] + " </label></td>" +
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 1] + "'>" +
+                                "<label>" + data.name[i * 4 + 1] + " </label></td>" +
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
+                                "<label>" + data.name[i * 4 + 2] + " </label></td>" +
+                                "<td><img src='images/smallpic/" + data.name[i * 4 + 3] + "'>" +
+                                "<label>" + data.name[i * 4 + 3] + " </label></td></th>"
+                        )
+                    }
+                }
             },
-            error:function () {
+            error: function () {
                 alert("error");
             }
+        });
+    })
+
+
+    function raidoOnclick() {
+        var value;
+        $(".radio").each(function () {
+            alert($(this).val());
+          if(  $(this).val() == "on")
+          {
+              value = "on";
+          } else{
+              value="off"
+          }
         })
+        var text;
+        text = $("#open_view_text").val();
+
+        $.ajax({
+            type: "post",
+            url:"openview",
+            datatype:"json",
+            data:{
+              defaultView:value,
+                text:text,
+            },
+            success:function (data) {
+
+            }
+
+        });
+
     }
 
-   function a(){
-     var audio = document.getElementById('one'); 
-     if(audio.paused){                 
-         audio.play();//audio.play();// 试听 
-     }
-     else{
-          audio.pause();// 暂停
-     } 
-   }
-
-    function b(){
-     var audio = document.getElementById('two'); 
-     if(audio.paused){                 
-         audio.play();//audio.play();// 试听 
-     }
-     else{
-          audio.pause();// 暂停
-     } 
-   }
-
-    function c(){
-     var audio = document.getElementById('three'); 
-     if(audio.paused){                 
-         audio.play();//audio.play();// 试听 
-     }
-     else{
-          audio.pause();// 暂停
-     } 
-   }
-
-    function d(){
-     var audio = document.getElementById('four'); 
-     if(audio.paused){                 
-         audio.play();//audio.play();// 试听 
-     }
-     else{
-          audio.pause();// 暂停
-     } 
-   }
 </script>
-
-<script type="text/javascript">
-
-</script>
-
-
-
 </body>
 </html>

@@ -1,32 +1,29 @@
-package cn.zane.Service; /**
- * Created by ZZ on 2016/8/4.
- * 给文件增加一行数据。
- *
- */
+package cn.zane.Service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-public class InsertFile {
+import java.io.*;
+
+/**
+ * Created by ZZ on 2016/9/20.
+ */
+public class UpdateFile {
+
+    public static void main(String[] args) throws Exception {
+        File file = new File("C:\\Users\\ZZ\\Desktop\\tour.xml");
+        updateStringInFile(file);
+        System.out.println("end");
+    }
     /**
      * 在文件里面的指定行插入一行数据
      *
      * @param inFile
      *          文件
-     * @param lineno
-     *          行号
-     * @param lineToBeInserted
-     *          要插入的数据
      * @throws Exception
      *           IO操作引发的异常
      */
-    public static void insertStringInFile(File inFile, int lineno, String lineToBeInserted)
+    public static void updateStringInFile(File inFile)
             throws Exception {
         // 临时文件
-        File outFile = File.createTempFile("insertTmp", ".tmp");
+        File outFile = File.createTempFile("updateTmp", ".tmp");
         // 输入
         FileInputStream fis = new FileInputStream(inFile);
         BufferedReader in = new BufferedReader(new InputStreamReader(fis));
@@ -38,13 +35,13 @@ public class InsertFile {
         // 行号从1开始
         int i = 1;
         while ((thisLine = in.readLine()) != null) {
-            if (i == 1){
-                thisLine = "<krpano version=\"1.19\" title=\"Virtual Tour\">";
-            }
             // 如果行号等于目标行，则输出要插入的数据
-            if (i == lineno) {
-                out.println(lineToBeInserted);
+            System.out.println(i+thisLine);
+
+            if (i == 14){
+                thisLine = "littleplanetintro=\"true\"";
             }
+
             // 输出读取到的数据
             out.println(thisLine);
             // 行号增加
@@ -59,3 +56,4 @@ public class InsertFile {
         outFile.renameTo(inFile);
     }
 }
+

@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by ZZ on 2016/8/4.
  */
-public class TestFile {
+public class KrpanoGenerateFile {
 
     public static void main(String[] args) {
         // This is the path where the file's name you want to take.
