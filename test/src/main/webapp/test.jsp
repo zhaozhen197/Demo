@@ -32,14 +32,14 @@
             <div class="modal-body">
 
 
-                <table class= "table" table-striped  >
+                <table class= "table" table-striped>
                     <tbody>
                     <tr>
                         <td>
                             <div class="control-group">
                                 <!-- Multiple Checkboxes -->
                                 <label class="radio inline">
-                                    <input type="radio" name="use_or_not" class="radio" value="off">不使用提
+                                    <input type="radio" name="use_or_not" class="radio" value="off">不使用启动画面
                                 </label>
                             </div>
                         </td>
@@ -47,12 +47,13 @@
                             <div class="control-group">
                                 <!-- Multiple Checkboxes -->
                                 <label class="radio inline">
-                                    <input type="radio" name="use_or_not"  value="on" class="radio" >使用默认提示
+                                    <input type="radio" name="use_or_not"  value="on" class="radio" >使用默认启动画面
                                 </label>
                             </div>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-primary" >从媒体库中选择</a>
+                            <button class="btn btn-default" data-toggle="modal"
+                                    data-target="#choose" data-backdrop="static" onclick="show_container_pic()">从媒体库中选择</button>
                         </td>
                         <td>
                             <img src="./img/logo.png" alt="" height="30"width="30" >
@@ -80,6 +81,32 @@
     </div>
 </div>
 
+<!-- 模态框声明 -->
+<div class="modal fade" id="choose" tabindex="-1">
+    <!-- 窗口声明 -->
+    <div class="modal-dialog">
+        <!-- 内容声明 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">开场提示</h4>
+            </div>
+            <div class="modal-body">
+
+                <h4>图片：</h4>
+                <table class= "table" table-striped>
+                    <tbody id="mediaPic">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="save_container_pic()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <button class="btn btn-primary btn-lg" data-toggle="modal"
         data-target="#Openingtips" data-backdrop="static">启动画面</button>
@@ -96,15 +123,13 @@
                 <tr>
                     <th>
                         <p>
-                            全景管理 共有X个作品
-
+                            全景管理
                         </p>
                     </th>
                     <th><p></p></th>
                     <th><p></p> </th>
                     <th>
                         <a href="#" ><p>从素材库中添加</p></a>
-
                     </th>
                 </tr>
                 </thead>
@@ -123,38 +148,126 @@
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+
+    //获得选择的图片名称
+function save_container_pic() {
+    var name ;
+    $(".pic_button").each(function () {
+       if ($(this).val()=="1"){
+           name = $(this).name;
+       }
+    });
+    alert(name);
+}
+
+//点击图片，val 设置为1
+    function setPicValue(name) {
+        alert("ok");
+        alert(name);
+        $(this).val("1");
+        $(".pic_button").each(function () {
+           if ($(this).val() == 1 && this.name != name){
+                $(this).val("0");
+            }
+        });
+
+    }
+    //从素材库选择图片
+    function show_container_pic() {
+        alert("ok");
+        $.ajax({
+            type:"post",
+            url: "getmedia",
+            dataType:"json",
+            success:function (data) {
+                var temp = Math.floor(data.name.length / 3);
+                var temp1 = data.name.length % 3;
+                alert(temp + " || " + temp1);
+                if (temp1 != 0 && temp !=0 ) {
+                    for (var i = 0; i < temp; i++) {
+                        $("#mediaPic").append("<tr class='media_container_pic_tr'>");
+                        $(".media_container_pic_tr").eq(i).append(
+                                "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
+                                "<button  onclick='setPicValue(this.name)'name=' "+ data.name[i * 3] + "' value='0' type='button' class='btn btn-primary pic_button'data-toggle='buttons-radio'>" +
+                                "<img  name='" + data.name[i * 3] + "' src='img/pic/" + data.name[i * 3] + "' class='' height='100' width='100'>" +
+
+                                "</button></div></td>" +
+                                "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
+                                "<button type='button' name='"  + data.name[i * 3 + 1]  +"' value= '0' onclick='setPicValue(this.name)'  class='btn btn-default pic_button' data-toggle='buttons-radio'>" +
+                        "<img src='./img/pic/" + data.name[i * 3 + 1] + "' class='' height='100' width='100'>" +
+                                "</button></div></td>" +
+                                "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
+                        "<button value='0' name='"+data.name[i * 3 + 2]+"' onclick='setPicValue(this.name);' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                        "<img src='img/pic/" + data.name[i * 3 + 2] + "'class='' height='100' width='100'>" +
+                                "</buttonv></div></td></tr>"
+                        )
+                    }
+                    $(".media_container_pic_tr").eq(temp-1).after("<tr class='media_container_pic_tr'></tr>");
+                    for (var j = 3 * temp; j < data.name.length; j++) {
+                        $(".media_container_pic_tr").eq(temp).append("<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
+                                "<button  onclick='setPicValue(this.name)' name='" + data.name[j] +" ' value='0' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                                "<img  class=''  src='img/pic/" + data.name[j] + "' height='100' width='100'>" +
+                                "</button></div></td>");
+                    }
+
+                } else if(temp == 0) {
+                    $("#mediaPic").append("<tr class='media_container_pic_tr'> </tr>");
+                    for(var i = 0;i<data.name.length;i++){
+                       alert( data.name[i]);
+                        $(".media_container_pic_tr").append(
+                                "<td><div class='btn-group' data-toggle='buttons-checkbox'><button type='button' class='btn btn-default'data-toggle='buttons-radio'><img src='img/pic/" + data.name[i] + "' height='100' width='100'>" +
+                                "</button></div></td>")
+                    }
+                } else {
+                    for (var i = 0; i < temp; i++) {
+                        $("#mediaPic").append("<tr class='media_container_pic_tr'>");
+                        $(".media_container_pic_tr").eq(i).append(
+                                "<td><div class='btn-group' data-toggle='buttons-checkbox'><button type='button' class='btn btn-default'data-toggle='buttons-radio'><img src='img/pic/" + data.name[i * 3 + 0] + "' height='100' width='100'>" +
+                                "</button></div></td>" +
+                                "<td><div class='btn-group' data-toggle='buttons-checkbox'><button type='button' class='btn btn-default'data-toggle='buttons-radio'><img src='img/pic/" + data.name[i * 3 + 1] + "' height='100' width='100'>" +
+                                "</button></div></td>" +
+                                "<td><div class='btn-group' data-toggle='buttons-checkbox'><button type='button' class='btn btn-default'data-toggle='buttons-radio'><img src='img/pic/" + data.name[i * 3 + 2] + "' height='100' width='100'>" +
+                                "</button></div></td>"
+                        )
+                    }
+                }
+            },
+            error:function () {
+                alert("error");
+            }
+
+        })
+
+    }
+
+    //当页面加载完成时，显示图片
     $(function () {
-        $("#tbody").append("']]]]]");
 
         $.ajax({
             type: "post",
             url: "piccontainer",
             dataType: "json",
             success: function (data) {
-                alert("ok");
-                alert(data.name.length)
-                var temp = data.name.length / 4;
+                var temp = Math.floor(data.name.length / 4);
                 var temp1 = data.name.length % 4;
                 if (temp1 != 0 && temp !=0 ) {
-
                     for (var i = 0; i < temp; i++) {
                         $("#tbody").append("<tr class='container_pic_tr'>");
                         $(".container_pic_tr").eq(i).append(
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 0] + "'>" +
-                                "<label>" + data.name[i * 4 + 0] + " </label></td>" +
+                                 ""+ data.name[i * 4 + 0] + " </td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 1] + "'>" +
                                 "<label>" + data.name[i * 4 + 1] + " </label></td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
                                 "<label>" + data.name[i * 4 + 2] + " </label></td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 3] + "'>" +
-                                "<label>" + data.name[i * 4 + 3] + " </label></td></th>"
+                                "<label>" + data.name[i * 4 + 3] + " </label></td></tr>"
                         )
-                        $("#tbody :last-child").after("<tr></tr>");
-                        for (var j = 4 * temp; j < data.name.length; j++) {
-                            $("#tbody :last-child").append("<td><img src='images/smallpic/" + data.name[j] + "'>" +
-                                    "<label>" + data.name[j] + " </label></td>");
-
-                        }
+                    }
+                    $(".container_pic_tr").eq(temp-1).after("<tr class='container_pic_tr'></tr>");
+                    for (var j = 4 * temp; j < data.name.length; j++) {
+                        $(".container_pic_tr").eq(temp).append("<td><img src='images/smallpic/" + data.name[j] + "'>" +
+                                "<label>" + data.name[j] + " </label></td>");
                     }
 
                 } else if(temp == 0) {
@@ -165,8 +278,7 @@
                                 "<label>" + data.name[i] + " </label></td>")
                     }
                     $(".container_pic_tr:last-child").after("</tr>")
-                }
-                else {
+                } else {
                     for (var i = 0; i < temp; i++) {
                         $("#tbody").append("<tr class='container_pic_tr'>");
                         $(".container_pic_tr").eq(i).append(
@@ -177,7 +289,7 @@
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
                                 "<label>" + data.name[i * 4 + 2] + " </label></td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 3] + "'>" +
-                                "<label>" + data.name[i * 4 + 3] + " </label></td></th>"
+                                "<label>" + data.name[i * 4 + 3] + " </label></td></tr>"
                         )
                     }
                 }

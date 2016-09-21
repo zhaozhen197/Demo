@@ -60,6 +60,14 @@
         <servlet-name>PicContainerServlet</servlet-name>
         <servlet-class>cn.zane.Servlet.PicContainerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetMediaPicServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.GetMediaPicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetMediaPicServlet</servlet-name>
+        <url-pattern>/getmedia</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PicContainerServlet</servlet-name>
         <url-pattern>/piccontainer</url-pattern>
