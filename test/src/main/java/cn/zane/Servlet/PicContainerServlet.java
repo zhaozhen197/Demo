@@ -1,6 +1,5 @@
 package cn.zane.Servlet;
 
-import cn.zane.Service.GetFileList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

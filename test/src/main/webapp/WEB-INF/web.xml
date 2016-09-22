@@ -64,6 +64,22 @@
         <servlet-name>GetMediaPicServlet</servlet-name>
         <servlet-class>cn.zane.Servlet.GetMediaPicServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveMediaServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.SaveMediaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EarthCoverServlet</servlet-name>
+        <servlet-class>cn.zane.Servlet.EarthCoverServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EarthCoverServlet</servlet-name>
+        <url-pattern>/earthcover</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveMediaServlet</servlet-name>
+        <url-pattern>/savemedia</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetMediaPicServlet</servlet-name>
         <url-pattern>/getmedia</url-pattern>

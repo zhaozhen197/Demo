@@ -11,10 +11,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by ZZ on 2016/9/20.
- * openview servlet
+ * Created by ZZ on 2016/9/22.
  */
-public class OpenViewServlet extends HttpServlet {
+public class EarthCoverServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String defalut = request.getParameter("defaultView");
         String text = request.getParameter("text");
@@ -26,15 +25,13 @@ public class OpenViewServlet extends HttpServlet {
         openViewBean.setUse_or(defalut);
         openViewBean.setText(text);
         openViewBean.setOpenview_pic(pic);
-
         System.out.println(openViewBean);
         System.out.println(path);
         HttpSession session = request.getSession();
-        session.setAttribute("openViewBean",openViewBean);
+        session.setAttribute("openViewCover",openViewBean);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
-
     }
 }

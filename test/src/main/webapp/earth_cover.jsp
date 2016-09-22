@@ -28,7 +28,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title">启动画面</h4>
+                <h4 class="modal-title">天空遮盖</h4>
             </div>
             <div class="modal-body">
 
@@ -40,7 +40,7 @@
                             <div class="control-group">
                                 <!-- Multiple Checkboxes -->
                                 <label class="radio inline">
-                                    <input type="radio" name="use_or_not" class="radio_default" value="0" id="no_default" onclick="raidoNo_use_default()" checked>不使用启动画面
+                                    <input type="radio"  class="radio_default_cover" value="0" id="no_default_cover" onclick="raidoNo_use_default_cover()" checked>不使用遮盖
                                 </label>
                             </div>
                         </td>
@@ -48,24 +48,24 @@
                             <div class="control-group">
                                 <!-- Multiple Checkboxes -->
                                 <label class="radio inline">
-                                    <input type="radio" name="use_or_not" onclick="raido_use_default()" value="0" class="radio_default" id="use_default" >使用默认启动画面
+                                    <input type="radio" name="use_or_not" onclick="raido_use_default_cover()" value="0" class="radio_default_cover" id="use_default_cover" >使用系统遮盖
                                 </label>
                             </div>
                         </td>
                         <td>
                             <button class="btn btn-default" data-toggle="modal"
-                                    data-target="#choose" data-backdrop="static" onclick="show_container_pic()">从媒体库中选择</button>
+                                    data-target="#choose" data-backdrop="static" onclick="show_container_pic_cover()">从媒体库中选择</button>
                         </td>
                         <td>
-                            <img id ="openview_pic" src="./img/pic/a.png" alt="" height="30"width="30" >
+                            <img id ="openview_pic_cover" src="./img/pic/a.png" alt="" height="30"width="30" >
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>文字：</label>
+                            <label>链接：</label>
                         </td>
                         <td>
-                            <input type="text" class="text-left" id="open_view_text">
+                            <input type="text" class="text-left" id="open_view_text_cover">
                         </td>
                     </tr>
 
@@ -75,7 +75,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="raidoOnclick()">保存</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="raidoOnclick_cover()">保存</button>
             </div>
         </div>
     </div>
@@ -89,26 +89,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title">开场提示</h4>
+                <h4 class="modal-title">天空遮盖</h4>
             </div>
             <div class="modal-body">
 
                 <h4>图片：</h4>
                 <table class= "table" table-striped>
-                    <tbody id="mediaPic">
+                    <tbody id="mediaPic_cover">
 
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save_container_pic()">保存</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save_container_pic_cover()">保存</button>
             </div>
         </div>
     </div>
 </div>
 <button class="btn btn-primary btn-lg" data-toggle="modal"
-        data-target="#Openingtips" data-backdrop="static">启动画面</button>
+        data-target="#Openingtips" data-backdrop="static">天空遮盖</button>
 
 
 <div class="section">
@@ -145,38 +145,20 @@
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
-    //媒体库保存按钮
-    function save_btn_container_pic() {
-        alert("save");
-        $.ajax({
-            type: "post",
-            url:"savemedia",
-            dataType:"json",
-            data:{
-                container_pic_name: name
-            },
-            success:function (data) {
 
-            },
-            error:function () {
-                alert("save error!");
-            }
-
-        });
-    }
     //获得选择的图片名称
-    function save_container_pic() {
-    $("#mediaPic").empty()
+    function save_container_pic_cover() {
+        $("#mediaPic_cover").empty()
     }
 
     //点击图片
-    function setPicValue(name) {
+    function setPicValue_cover(name) {
         alert(name);
-        $("#openview_pic").attr(({ src : 'img/pic/'+name }));
+        $("#openview_pic_cover").attr(({ src : 'img/pic/'+name }));
 
     }
     //从素材库选择图片
-    function show_container_pic() {
+    function show_container_pic_cover() {
         alert("ok");
         $.ajax({
             type:"post",
@@ -188,53 +170,52 @@
                 alert(temp + " || " + temp1);
                 if (temp1 != 0 && temp !=0 ) {
                     for (var i = 0; i < temp; i++) {
-                        $("#mediaPic").append("<tr class='media_container_pic_tr'>");
-                        $(".media_container_pic_tr").eq(i).append(
+                        $("#mediaPic_cover").append("<tr class='media_container_pic_tr_cover'>");
+                        $(".media_container_pic_tr_cover").eq(i).append(
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button  onclick='setPicValue(this.name)'name='"+ data.name[i * 3] + "' value='0' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                                "<button  onclick='setPicValue_cover(this.name)'name='"+ data.name[i * 3] + "' value='0' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
                                 "<img  name='" + data.name[i * 3] + "' src='img/pic/" + data.name[i * 3] + "' class='' height='100' width='100'>" +
                                 "</button></div></td>" +
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button type='button' name='"  + data.name[i * 3 + 1]  +"' value= '0' onclick='setPicValue(this.name)'  class='btn btn-default pic_button' data-toggle='buttons-radio'>" +
-                                 "<img src='img/pic/" + data.name[i * 3 + 1] + "' class='' height='100' width='100'>" +
+                                "<button type='button' name='"  + data.name[i * 3 + 1]  +"' value= '0' onclick='setPicValue_cover(this.name)'  class='btn btn-default pic_button' data-toggle='buttons-radio'>" +
+                                "<img src='img/pic/" + data.name[i * 3 + 1] + "' class='' height='100' width='100'>" +
                                 "</button></div></td>" +
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button value='0' name='"+data.name[i * 3 + 2]+"' onclick='setPicValue(this.name);' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                                "<button value='0' name='"+data.name[i * 3 + 2]+"' onclick='setPicValue_cover(this.name);' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
                                 "<img src='img/pic/" + data.name[i * 3 + 2] + "'class='' height='100' width='100'>" +
                                 "</buttonv></div></td></tr>"
                         )
                     }
-                    $(".media_container_pic_tr").eq(temp-1).after("<tr class='media_container_pic_tr'></tr>");
+                    $(".media_container_pic_tr_cover").eq(temp-1).after("<tr class='media_container_pic_tr_cover'></tr>");
                     for (var j = 3 * temp; j < data.name.length; j++) {
-                        $(".media_container_pic_tr").eq(temp).append("<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button  onclick='setPicValue(this.name)' name='" + data.name[j] +" ' value='0' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                        $(".media_container_pic_tr_cover").eq(temp).append("<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
+                                "<button  onclick='setPicValue_cover(this.name)' name='" + data.name[j] +" ' value='0' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
                                 "<img  class=''  src='img/pic/" + data.name[j] + "' height='100' width='100'>" +
                                 "</button></div></td>");
                     }
                 } else if(temp == 0) {
-                    $("#mediaPic").append("<tr class='media_container_pic_tr'> </tr>");
+                    $("#mediaPic_cover").append("<tr class='media_container_pic_tr_cover'> </tr>");
                     for(var i = 0;i<data.name.length;i++){
-                       alert( data.name[i]);
-                        $(".media_container_pic_tr").append(
+                        $(".media_container_pic_tr_cover").append(
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button  onclick='setPicValue(this.name)' type='button' name='" + data.name[i] + "' class='btn btn-default pic_button 'data-toggle='buttons-radio'>" +
+                                "<button  onclick='setPicValue_cover(this.name)' type='button' name='" + data.name[i] + "' class='btn btn-default pic_button 'data-toggle='buttons-radio'>" +
                                 "<img src='img/pic/" + data.name[i] + "' height='100' width='100'>" +
                                 "</button></div></td>")
                     }
                 } else {
                     for (var i = 0; i < temp; i++) {
-                        $("#mediaPic").append("<tr class='media_container_pic_tr'>");
-                        $(".media_container_pic_tr").eq(i).append(
+                        $("#mediaPic_cover").append("<tr class='media_container_pic_tr'>");
+                        $(".media_container_pic_tr_cover").eq(i).append(
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button  onclick='setPicValue(this.name)' name='" + data.name[i * 3 + 0] + "' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                                "<button  onclick='setPicValue_cover(this.name)' name='" + data.name[i * 3 + 0] + "' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
                                 "<img src='img/pic/" + data.name[i * 3 + 0] + "' height='100' width='100'>" +
                                 "</button></div></td>" +
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button onclick='setPicValue(this.name)' name='" + data.name[i * 3 + 1] + "' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                                "<button onclick='setPicValue_cover(this.name)' name='" + data.name[i * 3 + 1] + "' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
                                 "<img src='img/pic/" + data.name[i * 3 + 1] + "' height='100' width='100'>" +
                                 "</button></div></td>" +
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
-                                "<button type='button' onclick='setPicValue(this.name)' name='"+ data.name[i * 3 + 2] + "' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
+                                "<button type='button' onclick='setPicValue_cover(this.name)' name='"+ data.name[i * 3 + 2] + "' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
                                 "<img src='img/pic/" + data.name[i * 3 + 2] + "' height='100' width='100'>" +
                                 "</button></div></td>"
                         )
@@ -263,7 +244,7 @@
                         $("#tbody").append("<tr class='container_pic_tr'>");
                         $(".container_pic_tr").eq(i).append(
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 0] + "'>" +
-                                 ""+ data.name[i * 4 + 0] + " </td>" +
+                                ""+ data.name[i * 4 + 0] + " </td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 1] + "'>" +
                                 "<label>" + data.name[i * 4 + 1] + " </label></td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
@@ -308,46 +289,46 @@
         });
     })
 
-function raidoNo_use_default() {
-    if($("#no_default") .val() == "no_default"){
-       $("#no_default").val("0");
-    }else {
-        $("#no_default").val("no_default");
-    }
-
-}
-
-    function raido_use_default() {
-        if($("#use_default") .val() == "use_default"){
-            $("#use_default").val("0");
+    function raidoNo_use_default_cover() {
+        if($("#no_default") .val() == "no_default_cover"){
+            $("#no_default").val("0");
         }else {
-            $("#use_default").val("use_default");
+            $("#no_default").val("no_default_cover");
         }
 
     }
-    function raidoOnclick() {
+
+    function raido_use_default_cover() {
+        if($("#use_default_cover") .val() == "use_default_cover"){
+            $("#use_default_cover").val("0");
+        }else {
+            $("#use_default_cover").val("use_default_cover");
+        }
+
+    }
+    function raidoOnclick_cover() {
 
         var value;
-        $(".radio_default").each(function () {
-          if($(this).val() == "no_default")
-          {
-              value = "0";
-          }else {
-              value = "no_default";
-          }
+        $(".radio_default_cover").each(function () {
+            if($(this).val() == "no_default_cover")
+            {
+                value = "0";
+            }else {
+                value = "no_default_cover";
+            }
         })
         var text;
-        text = $("#open_view_text").val();
+        text = $("#open_view_text_cover").val();
 
         var pic_path ;
-        pic_path = $("#openview_pic")[0].src;
+        pic_path = $("#openview_pic_cover")[0].src;
         alert(pic_path);
         $.ajax({
             type: "post",
-            url:"openview",
+            url:"earthcover",
             datatype:"json",
             data:{
-              defaultView:value,
+                defaultView:value,
                 text:text,
                 path:pic_path
             },

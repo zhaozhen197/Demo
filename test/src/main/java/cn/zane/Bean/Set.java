@@ -9,8 +9,37 @@ public class Set {
     private FunctionOpen functionOpen;
     private Pic pic;
     private  Camera camera;
+    private EarthCover  earthCover;
+    private EarthCover openView;
+
 //    private Hint hint;
 
+
+    public EarthCover getEarthCover() {
+        return earthCover;
+    }
+
+    public void setEarthCover(EarthCover earthCover) {
+        this.earthCover = earthCover;
+    }
+
+    public EarthCover getOpenView() {
+        return openView;
+    }
+
+    public void setOpenView(EarthCover openView) {
+        this.openView = openView;
+    }
+
+    public Set(Music music, Voice voice, FunctionOpen functionOpen, Pic pic, Camera camera, EarthCover earthCover, EarthCover openView) {
+        this.music = music;
+        this.voice = voice;
+        this.functionOpen = functionOpen;
+        this.pic = pic;
+        this.camera = camera;
+        this.earthCover = earthCover;
+        this.openView = openView;
+    }
 
     public Set() {
     }
@@ -71,6 +100,8 @@ public class Set {
                 ", functionOpen=" + functionOpen +
                 ", pic=" + pic +
                 ", camera=" + camera +
+                ", earthCover=" + earthCover +
+                ", openView=" + openView +
                 '}';
     }
 }

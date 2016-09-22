@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 
 /**
  * Created by ZZ on 2016/9/21.
+ * 接收媒体库页面的请求
  */
 public class GetMediaPicServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
