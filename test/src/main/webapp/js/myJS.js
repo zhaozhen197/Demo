@@ -1,7 +1,54 @@
 /**
  * Created by ZZ on 2016/9/20.
  */
+// 编辑
+function showView_first_edit() {
+    $("#showViewFirst_edit").after("<div class='modal fade'  id='ShowView_edit' tabindex='-1'>"+
+    "<div class='modal-dialog'>"+
+        "<div class='modal-content'>"+
+        "<div class='modal-header'>"+
+        "<button class='close' data-dismiss='modal'><span>&times;</span></button>"+
+    "<h4 class='modal-title'>启动画面</h4>"+
+        "</div>"+
+        "<div class='modal-body' id='showViewFirst_div_edit'>"+
 
+        "<iframe width='560px' height='400px' src='images/vtour/tour_editor.html'></iframe>"+
+
+        "</div>"+
+        "<div class='modal-footer'>"+
+        "<button type='button' class='btn btn-default' data-dismiss='modal' onclick='close_showView_edit()' >关闭</button>"+
+"</div>"+
+"</div>"+
+"</div>"+
+"</div>")
+}
+function close_showView_edit() {
+    $("#ShowView_edit").empty();
+}
+function close_showView() {
+    $("#ShowView").empty();
+}
+// 浏览
+function showView_first() {
+    $("#showViewFirst").after("<div class='modal fade'  id='ShowView' tabindex='-1'>"+
+        "<div class='modal-dialog'>"+
+        "<div class='modal-content'>"+
+        "<div class='modal-header'>"+
+        "<button class='close' data-dismiss='modal'><span>&times;</span></button>"+
+        "<h4 class='modal-title'>启动画面</h4>"+
+        "</div>"+
+        "<div class='modal-body' id='showViewFirst_div_edit'>"+
+
+        "<iframe width='560px' height='400px' src='images/vtour/index.html'></iframe>"+
+
+        "</div>"+
+        "<div class='modal-footer'>"+
+        "<button type='button' class='btn btn-default' data-dismiss='modal' onclick='close_showView()' >关闭</button>"+
+        "</div>"+
+        "</div>"+
+        "</div>"+
+        "</div>")
+}
 //获得选择的图片名称
 function save_container_pic_cover() {
     $("#mediaPic_cover").empty()
@@ -133,10 +180,6 @@ function raidoOnclick_cover() {
 }
 
 
-
-
-
-
 //媒体库保存按钮
 function save_btn_container_pic() {
     alert("save");
@@ -148,12 +191,10 @@ function save_btn_container_pic() {
             container_pic_name: name
         },
         success:function (data) {
-
         },
         error:function () {
             alert("save error!");
         }
-
     });
 }
 //获得选择的图片名称
@@ -237,12 +278,10 @@ function show_container_pic() {
             alert("error");
         }
     })
-
 }
 
 //当页面加载完成时，显示图片
 $(function () {
-
     $.ajax({
         type: "post",
         url: "piccontainer",
@@ -254,20 +293,20 @@ $(function () {
                 for (var i = 0; i < temp; i++) {
                     $("#tbody").append("<tr class='container_pic_tr'>");
                     $(".container_pic_tr").eq(i).append(
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 0] + "'>" +
-                        ""+ data.name[i * 4 + 0] + " </td>" +
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 1] + "'>" +
-                        "<label>" + data.name[i * 4 + 1] + " </label></td>" +
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
-                        "<label>" + data.name[i * 4 + 2] + " </label></td>" +
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 3] + "'>" +
-                        "<label>" + data.name[i * 4 + 3] + " </label></td></tr>"
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 0] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 0] + "' type='text'/><a onclick='' href='#'>移除</a></div>  </td>" +
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 1] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 1] + "' type='text'/><a href='#'>移除</a></div>  </td>" +
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 2] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 2] + "' type='text'/><a href='#'>移除</a></div>  </td>" +
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 3] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 3] + "' type='text'/><a href='#'>移除</a></div>  </td></tr>"
                     )
                 }
                 $(".container_pic_tr").eq(temp-1).after("<tr class='container_pic_tr'></tr>");
                 for (var j = 4 * temp; j < data.name.length; j++) {
-                    $(".container_pic_tr").eq(temp).append("<td><img src='images/smallpic/" + data.name[j] + "'>" +
-                        "<label>" + data.name[j] + " </label></td>");
+                    $(".container_pic_tr").eq(temp).append("<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 2] + "'></div>" +
+                    "<div class='col-md-6'><input value='" + data.name[i * 4 + 2] + "' type='text'/><a href='#'>移除</a></div>  </td>");
                 }
 
             } else if(temp == 0) {
@@ -282,14 +321,14 @@ $(function () {
                 for (var i = 0; i < temp; i++) {
                     $("#tbody").append("<tr class='container_pic_tr'>");
                     $(".container_pic_tr").eq(i).append(
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 0] + "'>" +
-                        "<label>" + data.name[i * 4 + 0] + " </label></td>" +
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 1] + "'>" +
-                        "<label>" + data.name[i * 4 + 1] + " </label></td>" +
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
-                        "<label>" + data.name[i * 4 + 2] + " </label></td>" +
-                        "<td><img src='images/smallpic/" + data.name[i * 4 + 3] + "'>" +
-                        "<label>" + data.name[i * 4 + 3] + " </label></td></tr>"
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 0] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 0] + "' type='text'/><a onclick='' href='#'>移除</a></div>  </td>" +
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 1] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 1] + "' type='text'/><a href='#'>移除</a></div>  </td>" +
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 2] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 2] + "' type='text'/><a href='#'>移除</a></div>  </td>" +
+                        "<td><div style='width:50px; height:50px;' class='col-md-6'><img  src='images/smallpic/" + data.name[i * 4 + 3] + "'></div>" +
+                        "<div class='col-md-6'><input value='" + data.name[i * 4 + 3] + "' type='text'/><a href='#'>移除</a></div>  </td></tr>"
                     )
                 }
             }

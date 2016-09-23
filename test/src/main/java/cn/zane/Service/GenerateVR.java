@@ -2,6 +2,7 @@ package cn.zane.Service;
 
 import cn.zane.Bean.*;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -57,6 +58,7 @@ public class GenerateVR {
                 try {
                     GenerateOpenViewXml.generateOpenViewXml(imagespath+"vtour\\OpenView.xml",openView.getOpenview_pic().getName(),openView.getText());
                     AddOpenView.addOpenView(openView, rootRealPath);
+                    System.out.println("open view ok!");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -72,6 +74,7 @@ public class GenerateVR {
                 try {
                     GenerateEarthCoverXml.generateEarthCoverXml(imagespath+"vtour\\earthCover.xml",earthCover.getOpenview_pic().getName(),earthCover.getText());
                     AddOpenView.addOpenView(earthCover, rootRealPath);
+                    System.out.println("earth cover ok!");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -90,6 +93,13 @@ public class GenerateVR {
                 System.out.println("funxml ok");
             }
         }
+
+
+        //logo
+        FileCopy.copyFunc(rootRealPath+"skin_images\\",rootRealPath+"images\\vtour\\","HGD1.png");
+        String tarPath = rootRealPath+"images\\vtour\\";
+        File touXml = new File(tarPath+"tour.xml");
+        InsertFile.insertStringInFile(touXml, 79, "<layer name=\"logo\"  devices=\"desktop\" url=\"HGD1.png\" keep=\"true\"  align=\"righttop\"  x=\"20\" y=\"20\" zorder=\"0\" onclick=\"openurl('http://www.haut.edu.cn/');\" ></layer>");
     }
 
 }

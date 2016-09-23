@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<div class="modal fade" id="Openingtips" tabindex="-1">
+<div class="modal fade"  id="ShowView" tabindex="-1">
     <!-- 窗口声明 -->
     <div class="modal-dialog">
         <!-- 内容声明 -->
@@ -30,47 +30,10 @@
                 <button class="close" data-dismiss="modal"><span>&times;</span></button>
                 <h4 class="modal-title">启动画面</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="showview_div">
 
 
-                <table class= "table" table-striped>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="control-group">
-                                <!-- Multiple Checkboxes -->
-                                <label class="radio inline">
-                                    <input type="radio" name="use_or_not" class="radio_default" value="no_default" id="no_default" onclick="raidoNo_use_default()" checked>不使用启动画面
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="control-group">
-                                <!-- Multiple Checkboxes -->
-                                <label class="radio inline">
-                                    <input type="radio" name="use_or_not" onclick="raido_use_default()" value="0" class="radio_default" id="use_default" >使用默认启动画面
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-default" data-toggle="modal"
-                                    data-target="#choose" data-backdrop="static" onclick="show_container_pic()">从媒体库中选择</button>
-                        </td>
-                        <td>
-                            <img id ="openview_pic" src="./img/pic/a.png" alt="" height="30"width="30" >
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>文字：</label>
-                        </td>
-                        <td>
-                            <input type="text" class="text-left" id="open_view_text">
-                        </td>
-                    </tr>
 
-                    </tbody>
-                </table>
 
             </div>
             <div class="modal-footer">
@@ -108,7 +71,7 @@
     </div>
 </div>
 <button class="btn btn-primary btn-lg" data-toggle="modal"
-        data-target="#Openingtips" data-backdrop="static">启动画面</button>
+        data-target="#Openingtips" data-backdrop="static" onclick="ShowViewFirst()">启动画面</button>
 
 
 <div class="section">
@@ -144,6 +107,9 @@
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+    function ShowViewFirst() {
+        $("#showview_div").append("<iframe id='showview_iframe' width='560px' height='400px' src='images/vtour/index.html'></iframe>");
+    }
 
     //媒体库保存按钮
     function save_btn_container_pic() {
@@ -164,7 +130,7 @@
     }
     //获得选择的图片名称
     function save_container_pic() {
-    $("#mediaPic").empty()
+        $("#mediaPic").empty()
     }
 
     //点击图片
@@ -193,7 +159,7 @@
                                 "</button></div></td>" +
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
                                 "<button type='button' name='"  + data.name[i * 3 + 1]  +"' value= '0' onclick='setPicValue(this.name)'  class='btn btn-default pic_button' data-toggle='buttons-radio'>" +
-                                 "<img src='img/pic/" + data.name[i * 3 + 1] + "' class='' height='100' width='100'>" +
+                                "<img src='img/pic/" + data.name[i * 3 + 1] + "' class='' height='100' width='100'>" +
                                 "</button></div></td>" +
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
                                 "<button value='0' name='"+data.name[i * 3 + 2]+"' onclick='setPicValue(this.name);' type='button' class='btn btn-default pic_button'data-toggle='buttons-radio'>" +
@@ -211,7 +177,7 @@
                 } else if(temp == 0) {
                     $("#mediaPic").append("<tr class='media_container_pic_tr'> </tr>");
                     for(var i = 0;i<data.name.length;i++){
-                       alert( data.name[i]);
+                        alert( data.name[i]);
                         $(".media_container_pic_tr").append(
                                 "<td><div class='btn-group' data-toggle='buttons-checkbox'>" +
                                 "<button  onclick='setPicValue(this.name)' type='button' name='" + data.name[i] + "' class='btn btn-default pic_button 'data-toggle='buttons-radio'>" +
@@ -260,7 +226,7 @@
                         $("#tbody").append("<tr class='container_pic_tr'>");
                         $(".container_pic_tr").eq(i).append(
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 0] + "'>" +
-                                 "<tr>"+ data.name[i * 4 + 0] + " </tr><tr><a>移除</a></tr></td>" +
+                                "<tr>"+ data.name[i * 4 + 0] + " </tr><tr><a>移除</a></tr></td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 1] + "'>" +
                                 "<tr><label>" + data.name[i * 4 + 1] + " </label></tr><tr><a>移除</a></tr></td>" +
                                 "<td><img src='images/smallpic/" + data.name[i * 4 + 2] + "'>" +
@@ -304,11 +270,11 @@
         });
     })
 
-function raidoNo_use_default() {
-    $("#no_default").val("no_default");
-    $("#use_default") .val("0");
+    function raidoNo_use_default() {
+        $("#no_default").val("no_default");
+        $("#use_default") .val("0");
 
-}
+    }
 
     function raido_use_default() {
         $("#use_default").val("use_default");
@@ -318,13 +284,13 @@ function raidoNo_use_default() {
 
         var value;
         $(".radio_default").each(function () {
-          if($(this).val() == "no_default")
-          {
-              value = "no_default";
-          }
-          if($(this).val() == "use_default") {
-              value = "use_default";
-          }
+            if($(this).val() == "no_default")
+            {
+                value = "no_default";
+            }
+            if($(this).val() == "use_default") {
+                value = "use_default";
+            }
         })
         var text;
         text = $("#open_view_text").val();
@@ -337,7 +303,7 @@ function raidoNo_use_default() {
             url:"openview",
             datatype:"json",
             data:{
-              defaultView:value,
+                defaultView:value,
                 text:text,
                 path:pic_path
             },

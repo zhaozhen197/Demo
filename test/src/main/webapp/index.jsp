@@ -26,24 +26,115 @@
     </style>
   </head>
   <body>
-  <h4>全景设置：</h4>
-  <button class="btn btn-primary " data-toggle="modal"
-          data-target="#mymusic" href="mymusic.html"data-backdrop="static">背景音乐</button>
+  <div class="container">
+  <table class="table" table-striped>
+      <tr>
+          <td>
+            <h4>全景设置：</h4>
+          </td>
+      </tr>
+          <td>
+              <button class="btn btn-default " data-toggle="modal"
+                      data-target="#mymusic" href="mymusic.html"data-backdrop="static">背景音乐</button>
+          </td>
+          <td>
+              <button class="btn btn-default " data-toggle="modal"
+                  data-target="#myphoto" data-backdrop="static">相机拍摄数据</button>
+        </td>
+      <td>
+          <button type="submit" class="btn btn-default" data-toggle="modal"
+                  data-target="#Voiceinterpretation" data-backdrop="static" onclick="voiceOnclick()">语音解说</button>
+          </td>
+      <td>
+          <button class="btn btn-default" data-toggle="modal"
+                  data-target="#Earthcover" data-backdrop="static">地面遮盖</button>
+      </td>
+      <td>
+          <button class="btn btn-default" data-toggle="modal"
+                  data-target="#Openingtips" data-backdrop="static">启动画面</button>
+      </td>
+      <td>
+          <button class="btn btn-default" data-toggle="modal"
+                  data-target="#Functionenable" data-backdrop="static">功能启用</button>
+      </td>
+      <td>
+          <button class="btn btn-default" id="save_btn" onclick="saveall_btn()" >保存设置</button>
+      </td>
+      <td>
+          <button class="btn btn-default" id="showViewFirst" data-toggle="modal" data-target="#ShowView" ata-backdrop="static" onclick="showView_first()">浏览</button>
 
-  <button class="btn btn-primary " data-toggle="modal"
-          data-target="#myphoto" data-backdrop="static">相机拍摄数据</button>
-  <button type="submit" class="btn btn-primary" data-toggle="modal"
-          data-target="#Voiceinterpretation" data-backdrop="static" onclick="voiceOnclick()">语音解说</button>
+      </td>
+      <td>
+          <button class="btn btn-default" id="showViewFirst_edit" data-toggle="modal" data-target="#ShowView_edit" ata-backdrop="static" onclick="showView_first_edit()">编辑</button>
 
-  <button class="btn btn-primary" data-toggle="modal"
-          data-target="#Earthcover" data-backdrop="static">地面遮盖</button>
+      </td>
+</tr>
+</table>
+      </div>
 
-  <button class="btn btn-primary" data-toggle="modal"
-          data-target="#Openingtips" data-backdrop="static">启动画面</button>
 
-  <button class="btn btn-primary" data-toggle="modal"
-          data-target="#Functionenable" data-backdrop="static">功能启用</button>
-  <button class="btn bg-primary" id="save_btn" onclick="saveall_btn()" >保存设置</button>
+
+  <div class="section">
+      <div class="container">
+          <div class="container">
+              <h4>作品简介：</h4>
+
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <img src="./img/3.jpg" class="img-responsive" height="300" width="600">
+                  </div>
+
+
+                  <div class="col-md-6">
+
+                      <div>
+
+                          <h1>河南工业大学信息科学与工程学院</h1>
+
+                          <p>河南工业大学信息科学与工程学院现有教工133人，拥有一支综合素质好、学术水平高、实践经验丰富、具有开创精神的教学科研队伍，<br>
+                              具有教授、副教授等高级职称教师30余人，具有博士学位13人，其中包括从日本冈山大学等归国博士、博士后2人，具有硕士学位60余人。
+                              <br>现有在校研究生、本科、专科生共计3200余名。<br>
+
+                          </p>
+                      </div>
+                  </div>
+
+              </div>
+
+
+          </div>
+      </div>
+  </div>
+
+  <div class="section">
+      <div class="container">
+          <div class="suolue" class="row" >
+              <table class= "table" table-striped >
+                  <thead>
+                  <tr>
+                      <th>
+                          <p>
+                              全景管理
+                          </p>
+                      </th>
+                      <th><p></p></th>
+                      <th><p></p> </th>
+                      <th>
+                          <a href="#" ><p>从素材库中添加</p></a>
+                      </th>
+                  </tr>
+                  </thead>
+                  <tbody id="tbody">
+
+                  </tbody>
+
+              </table>
+
+          </div>
+      </div>
+  </div>
+
 
   <%
       List<Music> musics = new ArrayList<>();
@@ -443,8 +534,56 @@
           </div>
       </div>
   </div>
+
   <%--功能启用end--%>
 
+  <%--浏览
+  <div class="modal fade"  id="ShowView_edit" tabindex="-1">
+      <!-- 窗口声明 -->
+      <div class="modal-dialog">
+          <!-- 内容声明 -->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                  <h4 class="modal-title">启动画面</h4>
+              </div>
+              <div id="showViewFirst_div" class="modal-body">
+
+                  <iframe width='560px' height='400px' src='images/vtour/index.html'></iframe>
+
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="raidoOnclick()">保存</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  --%>
+  <%--编辑
+  <div class="modal fade"  id="ShowView" tabindex="-1">
+      <!-- 窗口声明 -->
+      <div class="modal-dialog">
+          <!-- 内容声明 -->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                  <h4 class="modal-title">启动画面</h4>
+              </div>
+              <div class="modal-body" id="showViewFirst_div_edit">
+
+                  <iframe width='560px' height='400px' src='images/vtour/tour_editor.html'></iframe>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="raidoOnclick()">保存</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  --%>
   <script src="js/jquery.min.js" type="text/javascript"></script>
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   <script src="js/myJS.js" type="text/javascript"></script>

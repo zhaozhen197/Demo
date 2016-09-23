@@ -45,6 +45,7 @@ public class InsertFile {
             if (i == lineno) {
                 out.println(lineToBeInserted);
             }
+
             // 输出读取到的数据
             out.println(thisLine);
             // 行号增加
