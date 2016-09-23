@@ -40,7 +40,7 @@
                             <div class="control-group">
                                 <!-- Multiple Checkboxes -->
                                 <label class="radio inline">
-                                    <input type="radio" name="use_or_not" class="radio_default" value="0" id="no_default" onclick="raidoNo_use_default()" checked>不使用启动画面
+                                    <input type="radio" name="use_or_not" class="radio_default" value="no_default" id="no_default" onclick="raidoNo_use_default()" checked>不使用启动画面
                                 </label>
                             </div>
                         </td>
@@ -309,21 +309,14 @@
     })
 
 function raidoNo_use_default() {
-    if($("#no_default") .val() == "no_default"){
-       $("#no_default").val("0");
-    }else {
-        $("#no_default").val("no_default");
-    }
+    $("#no_default").val("no_default");
+    $("#use_default") .val("0");
 
 }
 
     function raido_use_default() {
-        if($("#use_default") .val() == "use_default"){
-            $("#use_default").val("0");
-        }else {
-            $("#use_default").val("use_default");
-        }
-
+        $("#use_default").val("use_default");
+        $("#no_default").val("0");
     }
     function raidoOnclick() {
 
@@ -331,9 +324,10 @@ function raidoNo_use_default() {
         $(".radio_default").each(function () {
           if($(this).val() == "no_default")
           {
-              value = "0";
-          }else {
               value = "no_default";
+          }
+          if($(this).val() == "use_default") {
+              value = "use_default";
           }
         })
         var text;

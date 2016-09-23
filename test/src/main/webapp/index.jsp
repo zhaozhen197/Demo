@@ -106,7 +106,7 @@
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal" onclick="musicColose()">关闭</button>
-                  <button type="button" class="btn btn-primary">保存</button>
+                  <button type="button" class="btn btn-primary" onclick="musicColose()" data-dismiss="modal">保存</button>
               </div>
           </div>
       </div>
@@ -213,7 +213,7 @@
                               <div class="control-group">
                                   <!-- Multiple Checkboxes -->
                                   <label class="radio inline">
-                                      <input type="radio"  class="radio_default_cover" value="0" id="no_default_cover" onclick="raidoNo_use_default_cover()" checked>不使用遮盖
+                                      <input type="radio"  name="cover_use_or_not" class="radio_default_cover" value="no_default_cover" id="no_default_cover" onclick="raidoNo_use_default_cover()" checked>不使用遮盖
                                   </label>
                               </div>
                           </td>
@@ -221,7 +221,7 @@
                               <div class="control-group">
                                   <!-- Multiple Checkboxes -->
                                   <label class="radio inline">
-                                      <input type="radio" name="use_or_not" onclick="raido_use_default_cover()" value="0" class="radio_default_cover" id="use_default_cover" >使用系统遮盖
+                                      <input type="radio" name="cover_use_or_not" onclick="raido_use_default_cover()" value="0" class="radio_default_cover" id="use_default_cover" >使用系统遮盖
                                   </label>
                               </div>
                           </td>
@@ -300,7 +300,7 @@
               <div class="control-group">
                 <!-- Multiple Checkboxes -->
                 <label class="radio inline">
-                  <input type="radio" name="use_or_not" class="radio_default" value="0" id="no_default" onclick="raidoNo_use_default()" checked>不使用启动画面
+                  <input type="radio" name="use_or_not" class="radio_default" value="no_default" id="no_default" onclick="raidoNo_use_default()" checked>不使用启动画面
                 </label>
               </div>
             </td>

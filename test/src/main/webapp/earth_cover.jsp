@@ -40,7 +40,7 @@
                             <div class="control-group">
                                 <!-- Multiple Checkboxes -->
                                 <label class="radio inline">
-                                    <input type="radio"  class="radio_default_cover" value="0" id="no_default_cover" onclick="raidoNo_use_default_cover()" checked>不使用遮盖
+                                    <input type="radio" name="cover_use_or_not"  class="radio_default_cover" value="no_default_cover" id="no_default_cover" onclick="raidoNo_use_default_cover()" checked>不使用遮盖
                                 </label>
                             </div>
                         </td>
@@ -48,7 +48,7 @@
                             <div class="control-group">
                                 <!-- Multiple Checkboxes -->
                                 <label class="radio inline">
-                                    <input type="radio" name="use_or_not" onclick="raido_use_default_cover()" value="0" class="radio_default_cover" id="use_default_cover" >使用系统遮盖
+                                    <input type="radio" name="cover_use_or_not" onclick="raido_use_default_cover()" value="0" class="radio_default_cover" id="use_default_cover" >使用系统遮盖
                                 </label>
                             </div>
                         </td>
@@ -290,21 +290,14 @@
     })
 
     function raidoNo_use_default_cover() {
-        if($("#no_default") .val() == "no_default_cover"){
-            $("#no_default").val("0");
-        }else {
-            $("#no_default").val("no_default_cover");
-        }
+        $("#use_default_cover").val("0");
+        $("#no_default_cover").val("no_default_cover");
 
     }
 
     function raido_use_default_cover() {
-        if($("#use_default_cover") .val() == "use_default_cover"){
-            $("#use_default_cover").val("0");
-        }else {
-            $("#use_default_cover").val("use_default_cover");
-        }
-
+        $("#no_default_cover").val("0");
+        $("#use_default_cover").val("use_default_cover");
     }
     function raidoOnclick_cover() {
 
@@ -312,9 +305,10 @@
         $(".radio_default_cover").each(function () {
             if($(this).val() == "no_default_cover")
             {
-                value = "0";
-            }else {
                 value = "no_default_cover";
+            }
+            if ($(this).val() == "use_default_cover"){
+                value = "use_default_cover";
             }
         })
         var text;

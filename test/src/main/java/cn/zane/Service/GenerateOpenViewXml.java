@@ -1,15 +1,22 @@
 package cn.zane.Service;
 
+import org.junit.Test;
+
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 /**
  * Created by ZZ on 2016/9/23.
  */
 public class GenerateOpenViewXml {
+
+    @Test
     public static void generateOpenViewXml(String path, String name,String text) throws IOException {
-        File file = new File(path+name);
+        File file = new File(path);
+        if (!file.exists()){
+            file.createNewFile();
+        }
+        System.out.println(file.getPath());
         String first = "<krpano>\n" +
                 "<!--启动画面-->\n" +
                 "\n" +
@@ -36,8 +43,8 @@ public class GenerateOpenViewXml {
                 "x=\"0\"\n" +
                 "y=\"-80\"\n" +
                 "align=\"center\"";
-        first = first + "url=\"%SWFPATH%/images/" + name + "\"";
-        first = first +"scale=\"1\"\n" +
+        first = first + " url=\"" + name + "\"";
+        first = first +" scale=\"1\"\n" +
                 "alpha=\"0\"\n" +
                 "onloaded=\"tween(alpha,1.0);tween(layer[skin_title_pr].alpha,1.0);\"\n" +
                 "onclick=\"tween(layer[startpic_container].ox,-2500,1);\n" +
@@ -67,8 +74,8 @@ public class GenerateOpenViewXml {
                 "autowidth=\"auto\"\n" +
                 "height=\"40\"\n" +
                 "url=\"%SWFPATH%/plugins/textfield.swf\"";
-        first = first + "html=\"" + text + "\"";
-        first = first + "css=\"text-align:center; color:#9B8179; font-family:SimHei; font-weight:bold; font-size:32px;\"\n" +
+        first = first + " html=\"" + text + "\"";
+        first = first + " css=\"text-align:center; color:#9B8179; font-family:SimHei; font-weight:bold; font-size:32px;\"\n" +
                 "x=\"0\"\n" +
                 "y=\"150\"\n" +
                 "onclick=\"tween(layer[startpic_container].ox,-2500,1);\n" +
@@ -89,6 +96,8 @@ public class GenerateOpenViewXml {
                 "delayedcall(startpic2,5,set(layer[startpic_container].enabled,false);set(layer[startpic_container].visible,false));)\n" +
                 "\"/></krpano>";
         WriteToFile.writeToFile(first,file);
+        System.out.println("generate openView xml ok");
+
     }
 
 }

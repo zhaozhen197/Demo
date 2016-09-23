@@ -85,21 +85,14 @@ function show_container_pic_cover() {
 
 }
 function raidoNo_use_default_cover() {
-    if($("#no_default") .val() == "no_default_cover"){
-        $("#no_default").val("0");
-    }else {
-        $("#no_default").val("no_default_cover");
-    }
+    $("#use_default_cover").val("0");
+    $("#no_default_cover").val("no_default_cover");
 
 }
 
 function raido_use_default_cover() {
-    if($("#use_default_cover") .val() == "use_default_cover"){
-        $("#use_default_cover").val("0");
-    }else {
-        $("#use_default_cover").val("use_default_cover");
-    }
-
+    $("#no_default_cover").val("0");
+    $("#use_default_cover").val("use_default_cover");
 }
 function raidoOnclick_cover() {
 
@@ -107,9 +100,10 @@ function raidoOnclick_cover() {
     $(".radio_default_cover").each(function () {
         if($(this).val() == "no_default_cover")
         {
-            value = "0";
-        }else {
             value = "no_default_cover";
+        }
+        if ($(this).val() == "use_default_cover"){
+            value = "use_default_cover";
         }
     })
     var text;
@@ -307,21 +301,14 @@ $(function () {
 })
 
 function raidoNo_use_default() {
-    if($("#no_default") .val() == "no_default"){
-        $("#no_default").val("0");
-    }else {
-        $("#no_default").val("no_default");
-    }
+    $("#no_default").val("no_default");
+    $("#use_default") .val("0");
 
 }
 
 function raido_use_default() {
-    if($("#use_default") .val() == "use_default"){
-        $("#use_default").val("0");
-    }else {
-        $("#use_default").val("use_default");
-    }
-
+    $("#use_default").val("use_default");
+    $("#no_default").val("0");
 }
 function raidoOnclick() {
 
@@ -329,9 +316,10 @@ function raidoOnclick() {
     $(".radio_default").each(function () {
         if($(this).val() == "no_default")
         {
-            value = "0";
-        }else {
             value = "no_default";
+        }
+        if($(this).val() == "use_default") {
+            value = "use_default";
         }
     })
     var text;
@@ -362,7 +350,6 @@ function raidoOnclick() {
 
 //    页面保存按钮
     function saveall_btn() {
-
         $.ajax({
             url: "saveall",
             type: "post",
@@ -377,6 +364,7 @@ function raidoOnclick() {
         })
 
     }
+
 $(".edit_checkbox").click(
 
     function () {

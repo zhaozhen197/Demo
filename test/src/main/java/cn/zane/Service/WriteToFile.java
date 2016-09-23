@@ -14,10 +14,12 @@ import java.io.IOException;
 public class WriteToFile {
     public  static void writeToFile(String msg,File pathFile) throws IOException {
 
-        FileWriter fileWritter = new FileWriter(pathFile.getName(),true);//追加文件
-        BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-        bufferWritter.write(msg);
-        bufferWritter.close();
+        if (!pathFile.exists()){
+            pathFile.createNewFile();
+        }
 
+        BufferedWriter output = new BufferedWriter(new FileWriter(pathFile));
+        output.write(msg);
+        output.close();
     }
 }

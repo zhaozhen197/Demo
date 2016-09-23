@@ -53,6 +53,7 @@ public class EarthCover {
 
     @Override
     public String toString() {
+
         return "EarthCover{" +
                 "useOrNot='" + useOrNot + '\'' +
                 ", name='" + name + '\'' +

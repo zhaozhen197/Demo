@@ -25,12 +25,12 @@ public class AddMusicXml {
             FileCopy fileCopy= new FileCopy();
             fileCopy.copyFunc(musicXmlPath,tarPath,"sound.xml");
             fileCopy.copyFunc(realPath+"music\\",tarPath,music.getName());
-            insertFile.insertStringInFile(touXml,2,"\t<include url=\"sound.xml\"/>");
+            insertFile.insertStringInFile(touXml,79,"\t<include url=\"sound.xml\"/>");
             flag = true;
         }
 
         try {
-            insertFile.insertStringInFile(touXml,73,"\tplaysound(bgsnd,\'" + music.getName()+"\', 0);");
+            insertFile.insertStringInFile(touXml,72,"\tplaysound(bgsnd,\'" + music.getName()+"\', 0);");
         } catch (Exception e) {
             e.printStackTrace();
         }

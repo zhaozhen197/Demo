@@ -44,7 +44,7 @@ public class addFunXml {
             }
 
 
-            insertFile.insertStringInFile(tourXml,3,"\t<include url=\"autoround.xml\"/>");
+            insertFile.insertStringInFile(tourXml,79,"\t<include url=\"autoround.xml\"/>");
 
         }
 
@@ -58,7 +58,7 @@ public class addFunXml {
                 fileCopy.copyFunc(qrCode,tarPath,"qrcode.js");
                 flag = true;
             }
-            insertFile.insertStringInFile(tourXml,3,"\t<include url=\"qr.xml\"/>");
+            insertFile.insertStringInFile(tourXml,79,"\t<include url=\"qr.xml\"/>");
         }
 
 

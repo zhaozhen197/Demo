@@ -19,9 +19,12 @@ public class OpenViewServlet extends HttpServlet {
         String defalut = request.getParameter("defaultView");
         String text = request.getParameter("text");
         String path = request.getParameter("path");
+        String name = path.substring(path.lastIndexOf("/")+1);
 
         Pic pic = new Pic();
         pic.setPath(path);
+        pic.setName(name);
+        System.out.println(name+"**********");
         OpenViewBean openViewBean = new OpenViewBean();
         openViewBean.setUse_or(defalut);
         openViewBean.setText(text);

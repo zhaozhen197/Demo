@@ -1,9 +1,6 @@
 package cn.zane.Servlet;
 
-import cn.zane.Bean.EarthCover;
-import cn.zane.Bean.FunctionOpen;
-import cn.zane.Bean.Music;
-import cn.zane.Bean.Set;
+import cn.zane.Bean.*;
 import cn.zane.Service.GenerateVR;
 
 import javax.servlet.ServletException;
@@ -38,9 +35,9 @@ public class SaveAllServlet extends HttpServlet {
         //获得功能设置
         functionOpen = (FunctionOpen) session.getAttribute("functionOpen");
         //获得补地图片
-        EarthCover earthCover = (EarthCover) session.getAttribute("openViewCover");
+        OpenViewBean earthCover = (OpenViewBean) session.getAttribute("openViewCover");
         //获得启动页面
-        EarthCover openView = (EarthCover) session.getAttribute("openViewBean");
+        OpenViewBean openView = (OpenViewBean) session.getAttribute("openViewBean");
 
         Set set = new Set();
         set.setMusic(music);
@@ -51,7 +48,11 @@ public class SaveAllServlet extends HttpServlet {
 
         System.out.println("generate music");
         //生成vr 文件
-        new GenerateVR().generateVR(set,realPath);
+        try {
+            new GenerateVR().generateVR(set,realPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         /*System.out.println(music);
         System.out.println(voice);

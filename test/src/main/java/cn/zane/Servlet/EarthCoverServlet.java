@@ -18,15 +18,18 @@ public class EarthCoverServlet extends HttpServlet {
         String defalut = request.getParameter("defaultView");
         String text = request.getParameter("text");
         String path = request.getParameter("path");
-
+        String name = path.substring(path.lastIndexOf("/")+1);
         Pic pic = new Pic();
         pic.setPath(path);
+        pic.setName(name);
+
+
+        System.out.println(defalut+"88&&"+path);
+
         OpenViewBean openViewBean = new OpenViewBean();
         openViewBean.setUse_or(defalut);
         openViewBean.setText(text);
         openViewBean.setOpenview_pic(pic);
-        System.out.println(openViewBean);
-        System.out.println(path);
         HttpSession session = request.getSession();
         session.setAttribute("openViewCover",openViewBean);
     }

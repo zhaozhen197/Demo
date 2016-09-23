@@ -38,7 +38,7 @@ public class UpdateFile {
             // 如果行号等于目标行，则输出要插入的数据
             System.out.println(i+thisLine);
 
-            if (i == 14){
+            if (i == 13){
                 thisLine = "littleplanetintro=\"true\"";
             }
 

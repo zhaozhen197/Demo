@@ -9,29 +9,29 @@ public class Set {
     private FunctionOpen functionOpen;
     private Pic pic;
     private  Camera camera;
-    private EarthCover  earthCover;
-    private EarthCover openView;
+    private OpenViewBean earthCover;
+    private OpenViewBean openView;
 
 //    private Hint hint;
 
 
-    public EarthCover getEarthCover() {
+    public OpenViewBean getEarthCover() {
         return earthCover;
     }
 
-    public void setEarthCover(EarthCover earthCover) {
+    public void setEarthCover(OpenViewBean earthCover) {
         this.earthCover = earthCover;
     }
 
-    public EarthCover getOpenView() {
+    public  OpenViewBean getOpenView() {
         return openView;
     }
 
-    public void setOpenView(EarthCover openView) {
+    public void setOpenView(OpenViewBean openView) {
         this.openView = openView;
     }
 
-    public Set(Music music, Voice voice, FunctionOpen functionOpen, Pic pic, Camera camera, EarthCover earthCover, EarthCover openView) {
+    public Set(Music music, Voice voice, FunctionOpen functionOpen, Pic pic, Camera camera, OpenViewBean earthCover, OpenViewBean openView) {
         this.music = music;
         this.voice = voice;
         this.functionOpen = functionOpen;
